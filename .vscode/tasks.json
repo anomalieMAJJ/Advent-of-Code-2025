@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile: all (PowerShell)",
+      "type": "shell",
+      "command": "powershell -NoProfile -Command \"Get-ChildItem -Recurse -Filter '*.java' -Path ./src | ForEach-Object { & javac -d ./bin $_.FullName }\"",
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Run: Day/Part (run.ps1)",
+      "type": "shell",
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File ${workspaceFolder}\\run.ps1 ${input:day} ${input:part} ${input:input}",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": [],
+      "group": "none"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "day",
+      "type": "promptString",
+      "description": "Day (number or 'dayNN')",
+      "default": "1"
+    },
+    {
+      "id": "part",
+      "type": "promptString",
+      "description": "Part (1 or 2)",
+      "default": "1"
+    },
+    {
+      "id": "input",
+      "type": "promptString",
+      "description": "Optional input path (leave blank to use inputs/dayNN/input.txt)",
+      "default": ""
+    }
+  ]
+}
